@@ -1,41 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const puppys = [
-  {
-    id: 1,
-    name: "puppy",
-    image: "https://images.mypetlife.co.kr/wp-content/uploads/2018/03/07153649/file_23230_coton-de-tulear.jpg",
-    rating: 5
-  },
-  {
-    id: 2,
-    name: "puppy",
-    image: "https://cdn.crowdpic.net/list-thumb/thumb_l_F765F72F320703AA2833A5260D71732D.jpg",
-    rating: 4.8
-  }]
-
-function Puppy({ name, picture, rating }) {
-  return <div>
-    <h2> I like {name}</h2>
-    <h4>{rating}/5.0</h4>
-    <img src={picture} alt={name} />
-  </div>
-}
-
-Puppy.propTypes = {
-  name: PropTypes.string.isRequired,
-  picture: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired
-}
-
-// component : HTML을 반환하는 함수
-function App() {
-  return (
-    <div className="App">
-      { puppys.map(puppy => <Puppy key={puppy.id} name={puppy.name} picture={puppy.image} rating={puppy.rating}/>)}
-    </div>
-  );
+// 자동으로 실행함.
+/**
+ * setState 를 실행하면 
+ * state 를 refresh 하고 다시 render함.
+ */
+class App extends React.Component {
+  state = {
+    count: 0
+  } 
+  add = () => {
+    this.setState(current => ({count: current.count + 1}));
+  };
+  minus = () => {
+    this.setState(current => ({count: current.count - 1}));
+  };
+  componentDidMount() {
+    console.log("2 ----- component rendered");
+  }
+  componentDidUpdate() {
+    console.log("i just updated");
+  }
+  render() {
+    console.log("1 ----- im rendering");
+    return (
+      <div>
+        <h1>The number is: {this.state.count}</h1>
+        <button onClick={this.add}>Add</button>
+        <button onClick={this.minus}>minus</button>
+      </div>
+    )
+  }
 }
 
 export default App;
