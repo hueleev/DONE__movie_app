@@ -12,3 +12,5 @@ npm i gh-pages
 npm deploy
 ```
 >  predeploy 에서 build 후, deploy
+---
+done
